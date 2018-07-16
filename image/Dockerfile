@@ -32,7 +32,7 @@ RUN set -ex \
   && if [ ! -f /data/${JDK_ARCHIVE} ]; then \
        ${ARIA2C_DOWNLOAD} --header="Cookie: oraclelicense=accept-securebackup-cookie" -d /data \
          -o ${JDK_ARCHIVE} \
-         ${IMAGE_ARG_FILESERVER:-http://download.oracle.com}/otn-pub/java/jdk/${IMAGE_ARG_JAVA10_VERSION:-10.0.1}+${IMAGE_ARG_JAVA10_VERSION_BUILD:-10}/${JDK_ARCHIVE}; \
+         ${IMAGE_ARG_FILESERVER:-http://download.oracle.com}/otn-pub/java/jdk/${IMAGE_ARG_JAVA10_VERSION:-10.0.1}+${IMAGE_ARG_JAVA10_VERSION_BUILD:-10}/${IMAGE_ARG_JAVA10_PACKAGE_DIGEST:-fb4372174a714e6b8c52526dc134031e}/${JDK_ARCHIVE}; \
      fi \
   && tar -xzf /data/${JDK_ARCHIVE} -C /data && mkdir -p $(dirname ${JDK10_HOME}) && mv /data/jdk-${IMAGE_ARG_JAVA10_VERSION:-10.0.1} ${JDK10_HOME} \
   && rm -f ${JDK10_HOME}/lib/src.zip \
