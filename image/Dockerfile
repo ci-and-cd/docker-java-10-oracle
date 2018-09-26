@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.0.4-alpine-3.7
+FROM cirepo/nix:2.1.1-alpine-3.8
 
 
 USER root
@@ -20,7 +20,7 @@ ENV JAVA_HOME ${JDK10_HOME}
 ENV PATH ${JDK10_HOME}/bin:${PATH}
 
 
-COPY --from=cirepo/glibc:2.25-r0-alpine-3.7-archive /data/root /
+COPY --from=cirepo/glibc:2.25-r0-alpine-3.8-archive /data/root /
 
 
 COPY --chown=root:root docker /data
