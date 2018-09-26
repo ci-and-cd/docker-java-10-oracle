@@ -9,6 +9,7 @@ ARG IMAGE_ARG_FILESERVER
 
 # see: http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html
 # http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.tar.gz
+# http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz
 ARG IMAGE_ARG_JAVA10_VERSION
 ARG IMAGE_ARG_JAVA10_VERSION_BUILD
 ARG IMAGE_ARG_JAVA10_PACKAGE_DIGEST
@@ -28,13 +29,13 @@ COPY --chown=root:root docker /data
 
 RUN set -ex \
   && echo ===== Install JDK10 ===== \
-  && JDK_ARCHIVE="jdk-${IMAGE_ARG_JAVA10_VERSION:-10.0.1}_linux-x64_bin.tar.gz" \
+  && JDK_ARCHIVE="jdk-${IMAGE_ARG_JAVA10_VERSION:-10.0.2}_linux-x64_bin.tar.gz" \
   && if [ ! -f /data/${JDK_ARCHIVE} ]; then \
        ${ARIA2C_DOWNLOAD} --header="Cookie: oraclelicense=accept-securebackup-cookie" -d /data \
          -o ${JDK_ARCHIVE} \
-         ${IMAGE_ARG_FILESERVER:-http://download.oracle.com}/otn-pub/java/jdk/${IMAGE_ARG_JAVA10_VERSION:-10.0.1}+${IMAGE_ARG_JAVA10_VERSION_BUILD:-10}/${IMAGE_ARG_JAVA10_PACKAGE_DIGEST:-fb4372174a714e6b8c52526dc134031e}/${JDK_ARCHIVE}; \
+         ${IMAGE_ARG_FILESERVER:-http://download.oracle.com}/otn-pub/java/jdk/${IMAGE_ARG_JAVA10_VERSION:-10.0.2}+${IMAGE_ARG_JAVA10_VERSION_BUILD:-13}/${IMAGE_ARG_JAVA10_PACKAGE_DIGEST:-19aef61b38124481863b1413dce1855f}/${JDK_ARCHIVE}; \
      fi \
-  && tar -xzf /data/${JDK_ARCHIVE} -C /data && mkdir -p $(dirname ${JDK10_HOME}) && mv /data/jdk-${IMAGE_ARG_JAVA10_VERSION:-10.0.1} ${JDK10_HOME} \
+  && tar -xzf /data/${JDK_ARCHIVE} -C /data && mkdir -p $(dirname ${JDK10_HOME}) && mv /data/jdk-${IMAGE_ARG_JAVA10_VERSION:-10.0.2} ${JDK10_HOME} \
   && rm -f ${JDK10_HOME}/lib/src.zip \
   && rm -f /data/${JDK_ARCHIVE} && rm -rf /data/jdk* \
   && JAVA_VERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}') \
