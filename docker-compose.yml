@@ -11,7 +11,7 @@ services:
       #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://fileserver.infra.top}
       - IMAGE_ARG_JAVA10_VERSION=${IMAGE_ARG_JAVA10_VERSION:-10.0.2}
       - IMAGE_ARG_JAVA10_PACKAGE_DIGEST=${IMAGE_ARG_JAVA10_PACKAGE_DIGEST}
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-java-oracle}:${IMAGE_TAG:-10.0.2-alpine-3.8}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-java-oracle}:${IMAGE_TAG:-10.0.2-alpine-3.8}
   #docker-compose build dumper
   dumper:
     build:
@@ -23,4 +23,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-java-oracle}:${IMAGE_TAG:-10.0.2-alpine-3.8}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-java-oracle}:${IMAGE_TAG:-10.0.2-alpine-3.8}-archive
