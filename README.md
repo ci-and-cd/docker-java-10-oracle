@@ -26,3 +26,8 @@ COPY --from=cirepo/java-oracle:10.0.2-alpine-3.8-archive /data/root/usr/lib/jvm/
 COPY --from=cirepo/java-oracle:10.0.2-alpine-3.8-archive /data/root/usr/lib/jvm/java-10-oracle-jre /usr/lib/jvm/java-10-oracle-jre
 
 ```
+
+Upload file
+```bash
+curl --user "${username}:${passwrod}" -T image/docker/jdk-10.0.2_linux-x64_bin.tar.gz http://fileserver.infra.top/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz
+```
